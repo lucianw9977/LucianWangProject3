@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Add a linear gradient to the body */
+  background: linear-gradient(to right, #f8f8f8, #e0e0e0);
 }
 
 .container {
@@ -127,4 +129,8 @@ body {
 
 .search-input.invalid {
   border: 1px solid #f00;
+}
+
+.error-message {
+  color: red;
 }

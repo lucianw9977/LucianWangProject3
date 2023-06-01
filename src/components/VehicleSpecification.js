@@ -1,10 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+// Define the VehicleSpecTable component
+const VehicleSpecTable = ({ specifications }) => (
+  <table className="spec-table">
+    <tbody>
+      {specifications.map((specification) => (
+        <tr key={specification.Variable}>
+          <td>{specification.Variable}</td>
+          <td>{specification.Value}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+);
+
+// Define the LoadingIndicator component
+const LoadingIndicator = () => <p>Loading vehicle specifications...</p>;
+
 const VehicleSpecification = ({ vin }) => {
   const [specifications, setSpecifications] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const fetchSpecifications = async () => {
@@ -26,7 +44,7 @@ const VehicleSpecification = ({ vin }) => {
           setSpecifications([]);
         }
       } catch (error) {
-        console.error('Error fetching vehicle data:', error);
+        setErrorMessage('Error fetching vehicle data. Please try again.');
         setIsError(true);
       }
 
@@ -39,31 +57,20 @@ const VehicleSpecification = ({ vin }) => {
   }, [vin]);
 
   return (
-  <div className="vehicle-specification">
-    <h2>Vehicle Specification</h2>
-    <p className="vin-label">VIN: {vin}</p>
-    {isLoading ? (
-      <p>Loading vehicle specifications...</p>
-    ) : isError ? (
-      <p>Error fetching vehicle specifications. Please try again.</p>
-    ) : specifications.length > 0 ? (
-      <table className="spec-table">
-    <tbody>
-        {specifications.map((specification, index) => (
-            <tr key={index}>
-                <td>{specification.Variable}</td>
-                <td>{specification.Value}</td>
-            </tr>
-        ))}
-    </tbody>
-</table>
-
-    ) : (
-      <p>No vehicle specifications found.</p>
-    )}
-  </div>
-);
-
+    <div className="vehicle-specification">
+      <h2>Vehicle Specification</h2>
+      <p className="vin-label">VIN: {vin}</p>
+      {isLoading ? (
+        <LoadingIndicator />
+      ) : isError ? (
+        <p className="error-message">{errorMessage}</p>
+      ) : specifications.length > 0 ? (
+        <VehicleSpecTable specifications={specifications} />
+      ) : (
+        <p>No vehicle specifications found.</p>
+      )}
+    </div>
+  );
 };
 
 export default VehicleSpecification;

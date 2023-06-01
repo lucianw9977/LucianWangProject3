@@ -1,7 +1,12 @@
 import React from 'react';
 
-const Footer = () => {
-    return <footer>Built by Lucian Wang 2023</footer>;
+const Footer = ({ name, year }) => {
+    return <footer>Built by {name} {year}</footer>;
 };
+
+Footer.defaultProps = {
+    name: "Lucian Wang",
+    year: new Date().getFullYear()
+}
 
 export default Footer;
