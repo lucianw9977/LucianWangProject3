@@ -6,7 +6,7 @@ const Footer = ({ name, year }) => {
     return <footer>Built by {name} {year}</footer>;
 };
 
-// The defaultProps property sets default values for your props
+// The defaultProps property sets default values for props
 Footer.defaultProps = {
     name: "Lucian Wang",  // Default value for 'name' prop
     year: new Date().getFullYear()  // Default value for 'year' prop, which gets the current year
