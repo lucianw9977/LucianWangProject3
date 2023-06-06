@@ -74,3 +74,7 @@ const VehicleSpecification = ({ vin }) => {
 };
 
 export default VehicleSpecification;
+
+
+
+

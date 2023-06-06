@@ -15,7 +15,7 @@ const App = () => {
   return (
     <div className="app-container">
       <Header />
-      <div className="container-fluid my-4">
+      <div className="search-form-container">
         <SearchForm onSearch={handleSearch} />
         {vin && <VehicleSpecification vin={vin} />}
       </div>

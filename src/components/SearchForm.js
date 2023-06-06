@@ -23,26 +23,27 @@ const SearchForm = ({ onSearch }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="search-form mt-4">
-      <div className="form-group">
-        <label
-          htmlFor="vin"
-          className={`search-label ${isVinEntered ? 'hidden' : ''}`}
-        >
-          Please enter 17 digit VIN number
-        </label>
-
-        <input
-          type="text"
-          className={`form-control search-input ${vin.length === 17 ? 'valid' : vin.length > 0 ? 'invalid' : ''}`}
-          id="vin"
-          value={vin}
-          onChange={handleInputChange}
-        />
-        <FaSearch className="search-icon" onClick={handleSubmit} />
-        {error && <div className="error-message">{error}</div>}
-      </div>
-    </form>
+    <div className="search-form-container">
+      <form onSubmit={handleSubmit} className="search-form mt-4">
+        <div className="form-group">
+          <label
+            htmlFor="vin"
+            className={`search-label ${isVinEntered ? 'hidden' : ''}`}
+          >
+            Please enter 17 digit VIN number
+          </label>
+          <input
+            type="text"
+            className={`form-control search-input ${vin.length === 17 ? 'valid' : vin.length > 0 ? 'invalid' : ''}`}
+            id="vin"
+            value={vin}
+            onChange={handleInputChange}
+          />
+          <FaSearch className="search-icon" onClick={handleSubmit} />
+          {error && <div className="error-message">{error}</div>}
+        </div>
+      </form>
+    </div>
   );
 };
 

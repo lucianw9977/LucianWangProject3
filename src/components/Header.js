@@ -1,7 +1,12 @@
 import React from 'react';
 
 const Header = () => {
-    return <h1>Vehicle Vin Finder</h1>;
+    return (
+        <div className="header-container">
+            <h1 className="header-text">Vehicle Vin Finder</h1>
+        </div>
+    );
 };
 
 export default Header;
+
